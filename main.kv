@@ -1,0 +1,231 @@
+# main.kv
+
+#:import Factory kivy.factory.Factory
+#:import MDBoxLayout kivymd.uix.boxlayout.MDBoxLayout
+#:import MDScreen kivymd.uix.screen.MDScreen
+#:import MDScreenManager kivymd.uix.screenmanager.MDScreenManager
+
+# Define screens
+<Started>:
+    name: 'Started'
+    FloatLayout:
+        orientation: 'vertical'
+        Image:
+            source:'iconic.jpg'
+            pos_hint: {'center_x': 0.5,'center_y': 0.85}
+            size_hint:None, None
+            width:60
+            height:60
+        Image:
+            source:'person.png'
+            pos_hint: {'center_x': 0.5,'center_y': 0.6}
+            size_hint:None, None
+            width:100
+            height:100
+
+
+        MDButton:
+            on_release: app.root.current = 'LogIn'
+            pos_hint:{'center_x':0.5, 'center_y':0.3}
+            MDButtonText:
+                text: 'Get Started'
+        MDButton:
+            on_release: app.root.current = 'CreateAccount'
+            pos_hint:{'center_x':0.5, 'center_y':0.2}
+            MDButtonText:
+                italic:True
+                bold:False
+                text: 'Create account'
+
+
+<LogIn>:
+    name: 'LogIn'
+    FloatLayout:
+        Image:
+            source:'person.png'
+            pos_hint: {'center_x': 0.5,'center_y': 0.75}
+            size_hint:None, None
+            width:100
+            height:100
+
+        MDTextField:
+            id:username
+            helper_text_mode:'on_focus'
+            pos_hint:{'center_x':.5, 'center_y':0.5}
+            size_hint:None, None
+            width:300
+            height:34
+            MDTextFieldHintText
+                text:'UserName'
+
+
+        MDTextField:
+            id:password
+            helper_text_mode:'on_focus'
+            password:True
+            pos_hint:{'center_x':.5, 'center_y':0.35}
+            size_hint:None, None
+            width:300
+            height:34
+            MDTextFieldHintText
+                text:'Password'
+
+
+        MDButton:
+            pos_hint:{'center_x':.5, 'center_y':0.2}
+            size_hint:None, None
+            width:100
+            height:34
+            on_release: root.credentials()
+            MDButtonText:
+                text:"Log In"
+        MDButton:
+            style:'tonal'
+            pos_hint: {'center_x': 0.5,'center_y': 0.1}
+            on_release: app.root.current = 'Started'
+            MDButtonText:
+                text: "back"
+<CreateAccount>:
+    name:'CreateAccount'
+    FloatLayout:
+        Image:
+            source:'person.png'
+            pos_hint: {'center_x': 0.5,'center_y': 0.85}
+            size_hint:None, None
+            width:100
+            height:100
+        MDTextField:
+            id:username
+            helper_text_mode:'on_focus'
+            pos_hint:{'center_x':.5, 'center_y':0.65}
+            size_hint:None, None
+            width:300
+            height:34
+            MDTextFieldHintText
+                text:'UserName'
+
+
+        MDTextField:
+            id:password
+            helper_text_mode:'on_focus'
+            password:True
+            pos_hint:{'center_x':.5, 'center_y':0.5}
+            size_hint:None, None
+            width:300
+            height:34
+            MDTextFieldHintText
+                text:'Password'
+        MDTextField:
+            id:confirm
+            helper_text_mode:'on_focus'
+            password:True
+            pos_hint:{'center_x':.5, 'center_y':0.35}
+            size_hint:None, None
+            width:300
+            height:34
+            MDTextFieldHintText
+                text:'confirm'
+        MDButton:
+            pos_hint:{'center_x':.2, 'center_y':0.1}
+            on_release: app.root.current = 'Started'
+            size_hint:None, None
+            width:100
+            height:34
+            MDButtonText:
+                text:"Back"
+        MDButton:
+            pos_hint:{'center_x':.8, 'center_y':0.1}
+            size_hint:None, None
+            on_release:app.root.create()
+            width:100
+            height:34
+            MDButtonText:
+                text:"Create"
+
+
+
+<DashBord>:
+    name:'DashBord'
+    FloatLayout:
+        orientation:'vertical'
+        MDLabel:
+            text:"WELCOME Task Planner"
+            pos_hint:{'center_x':.5, 'center_y':.95}
+            halign:'center'
+            size_hint_y:None
+            height:60
+            md_bg_color:'lightblue'
+        MDButton:
+            pos_hint:{'center_x':.2, 'center_y':0.85}
+            size_hint:None, None
+            width:100
+            height:34
+            MDButtonText:
+                text:"Back"
+        MDButton:
+            pos_hint:{'center_x':.8, 'center_y':0.85}
+            size_hint:None, None
+            width:100
+            height:34
+            MDButtonText:
+                text:"Progress"
+        BoxLayout:
+            orientation:'vertical'
+            MDCard:
+                style:'elevated'
+                pos_hint:{'center_x':.3, 'center_y':.6}
+                size_hint:.5, None
+
+                MDLabel:
+                    text:"Add Task"
+                    pos_hint:{'center_x':.5, 'center_y':.5}
+                    bold:False
+                    halign:'center'
+            MDCard:
+                style:'elevated'
+                pos_hint:{'center_x':.7, 'center_y':.6}
+                size_hint:0.5, None
+
+                MDLabel:
+                    text:"Edit Task"
+                    pos_hint:{'center_x':.5, 'center_y':.5}
+                    bold:False
+                    halign:'center'
+            MDCard:
+                style:'elevated'
+                pos_hint:{'center_x':.3, 'center_y':.35}
+                size_hint:0.5, None
+                MDLabel:
+                    text:"Delete Task"
+                    pos_hint:{'center_x':.5, 'center_y':.5}
+                    bold:False
+                    halign:'center'
+
+            MDCard:
+                style:'elevated'
+                pos_hint:{'center_x':.7, 'center_y':.35}
+                size_hint:0.5, None
+
+                MDLabel:
+                    text:"View Task"
+                    pos_hint:{'center_x':.5, 'center_y':.5}
+                    bold:False
+                    halign:'center'
+
+
+
+
+<Profile>
+    name:'Profile'
+
+# Screen manager to manage transitions
+MDScreenManager:
+    id: screen_manager
+    Started:
+        id: Started
+    LogIn:
+        id: LogIn
+    DashBord:
+        id: DashBord
+    CreateAccount:
+        id:CreateAccount
